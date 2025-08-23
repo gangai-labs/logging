@@ -8,7 +8,6 @@ A simplified logging wrapper that automates file creation and provides structure
 - ✅ **Colored console output** for better readability  
 - ✅ **JSON-formatted error logs** with traceback information
 - ✅ **Log rotation** with configurable size limits
-- ✅ **Environment-based configuration** using `.env` files
 - ✅ **Multiple logger instances** with different configurations
 - ✅ **100% compatible** with standard Python logging
 
