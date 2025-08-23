@@ -1,4 +1,4 @@
-import json
+ import json
 import logging
 import logging.handlers
 import os
@@ -308,14 +308,15 @@ class Logger:
         }
         logger.setLevel(level_mapping[config.LOG_LEVEL])
 
-        # Formatters
+        # Normal formatter
         normal_formatter = logging.Formatter(
-            '%(asctime)s - [%(name)s] %(levelname)s - %(message)s',
+            '%(asctime)s - %(levelname)s [%(name)s.%(funcName)s()] - %(message)s',
             datefmt='%Y-%m-%d %H:%M:%S'
         )
 
+        # Color formatter
         color_formatter = ColoredFormatter(
-            '%(log_color)s%(asctime)s - [%(name)s] %(levelname)s - %(message)s',
+            '%(log_color)s%(asctime)s - %(levelname)s [%(name)s.%(funcName)s()] - %(message)s',
             datefmt='%Y-%m-%d %H:%M:%S',
             log_colors={
                 'DEBUG': 'cyan',
@@ -325,7 +326,6 @@ class Logger:
                 'CRITICAL': 'bold_red',
             }
         )
-
         json_formatter = JsonFormatter()
         colored_json_formatter = ColoredJsonFormatter()
 
@@ -454,7 +454,7 @@ class Logger:
 
 
 if __name__ == '__main__':
-    
+
     # Initialize the logger manager
     logger_manager = Logger()
 
@@ -471,7 +471,7 @@ if __name__ == '__main__':
             try:
                 result = 10 / 0  # This will cause ZeroDivisionError
             except Exception as e:
-                client_logger.exception("Division by zero occurred in calculation")
+                client_logger.exception(e)
     CreateErr().zerodiverror()
     # Example 2: Basic demo
     client_logger.error('my error')
